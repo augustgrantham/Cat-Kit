@@ -1,0 +1,106 @@
+html {
+  font-size: 10px;
+
+}
+
+body,html {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  display: flex;
+  justify-content: center; /* Center the content horizontally */
+  align-items: center; /* Center the content vertically */
+  flex-direction: column; /* Stack content vertically */
+  height: auto; /* Full viewport height */
+  text-align: center;
+}
+
+.keys {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 4 columns for mobile */
+  gap: 2px;
+  padding: 0 5px;
+}
+
+.key {
+  border: .4rem solid black;
+  border-radius: 8px;
+  margin: 1rem;
+  font-size: 14px;
+  padding: 15px;
+  transition: all .15s ease;
+  width: 10rem;
+  display:flex;
+  flex-direction:column;
+  justify-content: center;
+  align-items:center;
+  
+  color: white;
+  background: rgba(0,0,0,0.4);
+  text-shadow: 0 0 .5rem black;
+}
+
+.playing {
+  transform: scale(1.1);
+  border-color: #ffc600;
+  box-shadow: 0 0 1rem #ffc600;
+}
+
+kbd {
+  font-size: 4rem;
+  font-weight: bold;
+}
+
+.sound {
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  letter-spacing: .1rem;
+  color: #ffc600;
+}
+button {
+  all:unset;
+  cursor:pointer;
+}
+button.link { 
+  background:none; 
+  border:none; 
+}
+button:focus {
+  outline:none;
+}
+button:active {
+  outline:none;
+}
+
+img {
+  max-width: 50vh;
+  height: auto;
+  margin: 20px auto; /* Automatically adds left and right margin to center */
+  display: block;
+}
+/* Responsive styling for larger screens */
+@media (max-width: 375px) {
+  .key {
+    width: 10rem;
+    height: 3rem;
+  }
+}
+@media (min-width: 600px) {
+  .keys {
+    grid-template-columns: repeat(4, 1fr); 
+  }
+
+  #cat {
+    width: 50%; /* Keep the image smaller on larger screens */
+  }
+}
+
+@media (min-width: 768px) {
+  .keys {
+    grid-template-columns: repeat(8, 1fr); /* 8 columns for tablets and above */
+  }
+
+  #cat {
+    max-width: 30%; /* Further reduce the image size for very large screens */
+  }
+}

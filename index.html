@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cat Kit</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="images/cat-solid.svg"/>
+  <script src="https://kit.fontawesome.com/0d9007bb47.js" crossorigin="anonymous"></script>
+</head>
+<body>
+  <img id="cat" src="images/cat.png" alt="kitty cat">
+  <div class="keys">
+    <button onclick="playSound(65); clicked()" class="link">
+    <div data-key="65" class="key">
+      <kbd>A</kbd>
+      <span class="sound">meaahuh</span>
+    </div>
+    </button>
+    <button onclick="playSound(83); clicked()" class="link">
+      <div data-key="83" class="key">
+        <kbd>S</kbd>
+        <span class="sound">mmeghlr</span>
+      </div>
+    </button>
+    <!--
+    <button onclick="playSound(68); clicked()" class="link">
+      <div data-key="68" class="key">
+        <kbd>D</kbd>
+        <span class="sound">mheahr</span>
+      </div>
+    </button>    
+    --> 
+    <button onclick="playSound(76); clicked()" class="link">
+        <div data-key="76" class="key">
+           <kbd>S</kbd>
+           <span class="sound">mweour</span>
+        </div> 
+    </button>
+    <button onclick="playSound(70); clicked()" class="link">
+      <div data-key="70" class="key">
+        <kbd>F</kbd>
+        <span class="sound">meow</span>
+      </div>
+     </button>
+     <button onclick="playSound(71); clicked()" class="link">
+      <div data-key="71" class="key">
+        <kbd>G</kbd>
+        <span class="sound">mmeoww</span>
+      </div>
+      </button>
+       <button onclick="playSound(72); clicked()" class="link">
+      <div data-key="72" class="key">
+        <kbd>H</kbd>
+        <span class="sound"><small><small>meah</small></small></span>
+      </div>
+     </button>
+      <button onclick="playSound(74); clicked()" class="link">
+        <div data-key="74" class="key">
+          <kbd>J</kbd>
+          <span class="sound">mreowww</span>
+        </div>
+       </button>
+       <button onclick="playSound(75); clicked()" class="link">
+        <div data-key="75" class="key">
+          <kbd>K</kbd>
+          <span class="sound">mahhh</span>
+        </div>
+        </button>
+       
+  </div>
+
+  <audio data-key="65" src="sounds/meow1.wav"></audio>
+  <audio data-key="83" src="sounds/meow2.wav"></audio>
+  <audio data-key="68" src="sounds/meow3.wav"></audio>
+  <audio data-key="70" src="sounds/meow4.wav"></audio>
+  <audio data-key="71" src="sounds/meow5.wav"></audio>
+  <audio data-key="72" src="sounds/meow6.wav"></audio>
+  <audio data-key="74" src="sounds/meow7.wav"></audio>
+  <audio data-key="75" src="sounds/meow8.wav"></audio>
+  <audio data-key="76" src="sounds/meow9.wav"></audio>
+
+<script>
+var image = document.getElementById("cat");
+function swapImage() {
+  
+  //checks current if current image is meowing or not
+  if(!imageSwapping){
+    imageSwapping = true;
+  if(image.src.includes("cat.png"))
+{
+  image.src = "images/catmeow.png";
+}
+else
+{
+  image.src = "images/cat.png";
+}
+}
+}
+
+function playSound(keyCode) {
+  const audio = document.querySelector(`audio[data-key="${keyCode}"]`);
+  const key = document.querySelector(`.key[data-key="${keyCode}"]`);
+  if(!audio) return; //stop the function from running all together if key doesn't have audio associated with it
+  audio.currentTime = 0;// rewind to the start
+  audio.play();
+  key.classList.add('playing');
+}
+
+function removeTransition(e) {
+  if (e.propertyName !== 'transform') return;
+  this.classList.remove('playing');
+  imageSwapping = false;
+  swapImage();
+  
+}
+const keys = document.querySelectorAll('.key');
+keys.forEach(key => key.addEventListener('transitionend', removeTransition));
+
+window.addEventListener('keydown', function (e) {
+  //pass keycode from event to the function
+  playSound(e.keyCode);
+});
+function clicked() {
+  console.log("clicked");
+}
+</script>
+
+
+</body>
+</html>
